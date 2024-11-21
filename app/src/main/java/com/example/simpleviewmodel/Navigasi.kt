@@ -10,7 +10,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.simpleviewmodel.model.ListGender
+import com.example.simpleviewmodel.ui.view.FormMahasiswaView
 import com.example.simpleviewmodel.viewmodel.MahasiswaViewModel
 
 enum class Halaman{
@@ -33,8 +37,19 @@ fun Navigasi(
         ) {
             composable(route = Halaman.Form.name){
                 val konteks = LocalContext.current
+                FormMahasiswaView(
 
+                    //Di bawah ini merupakan dari parameter halaman formulir
+                    listGender = ListGender.listGender.map {
+                            isi -> konteks.resources.getString(isi)
+                    },
+                    onSubmitClick = {
+                        viewModel.saveDataMhs(it)
+                        navHost.navigate(Halaman.Data.name)
+                    }
+                )
             }
+
 
         }
     }
