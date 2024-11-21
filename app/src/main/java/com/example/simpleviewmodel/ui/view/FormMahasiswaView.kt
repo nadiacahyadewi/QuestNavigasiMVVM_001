@@ -30,16 +30,15 @@ fun FormMahasiswaView(
 
     ){
     var nama by remember { mutableStateOf("") }
+    var nim by remember { mutableStateOf("")}
     var email by remember { mutableStateOf("") }
     var noTelepon by remember { mutableStateOf("") }
     var alamat by remember { mutableStateOf("") }
     var memilihJK by remember { mutableStateOf("") }
 
     val listData: MutableList<String> = mutableListOf(
-        nama, memilihJK, alamat
+        nama, memilihJK, alamat, nim, noTelepon, email
     )
-
-
 
     Column (modifier = modifier
         .fillMaxSize()
