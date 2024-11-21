@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -14,7 +15,8 @@ import com.example.simpleviewmodel.model.Mahasiswa
 @Composable
 fun DetailMahasiswaView(
     dataMhs: Mahasiswa,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onBackButton: () -> Boolean
 ){
     val listDatamhs = listOf(
         Pair("Nama", dataMhs.nama),
@@ -30,6 +32,12 @@ fun DetailMahasiswaView(
         listDatamhs.forEach { data->
             DetailMhs(judul = data.first,
                 isi = data.second)
+        }
+        Button(modifier = modifier
+            .fillMaxWidth(),
+            onClick = { onBackButton() },
+        ) {
+            Text(text = "Kembali")
         }
     }
 }
